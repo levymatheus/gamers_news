@@ -1,16 +1,25 @@
 DEPENDENCIAS E CONFIGURAÇÕES INICIAIS
 
 1) as bibliotecas e dependências do projeto: npm i express@~4.17.2 express-formidable@~1.2.0 adminjs@~5.5.1 @adminjs/express@~4.0.1 @adminjs/sequelize@~2.1.0 @adminjs/upload@~2.0.1 pg@~8.7.1 sequelize@~6.13.0
+   
 servidor de rotas: express
+
 dependência do admin js para trabalhar com formulários no express: express-formidable
+
 ferramenta back-end para criar o painel administrativo do app (CRUD), telas de cadastro, posts e etc: AdminJs
+
 dependência para trabalhar com as rotas adminJs com o express: Adminjs/express
+
 dependência ORM para trabalhar com banco de dados: adminJs/sequelize
+
 recurso de upload do adminJS(videos,imagens,capas das noticias, categorias,etc) : adminjs/upload
+
 o proprio sequelize: sequelize
+
 o dependência do banco de dados postgress: pg
 
-2) agora as dependências de desenvolvimento:  npm i -D typescript@~4.5.4 ts-node-dev@~1.1.8 sequelize-cli@6.4.1 @types/express@~4.17.13 @types/node@~17.0.10
+
+3) agora as dependências de desenvolvimento:  npm i -D typescript@~4.5.4 ts-node-dev@~1.1.8 sequelize-cli@6.4.1 @types/express@~4.17.13 @types/node@~17.0.10
 
 linguagem ts para o projeto: typescript
 executar a aplicação em ts e fazer atualizações no código mesmo com o server em execução: ts-node-dev
