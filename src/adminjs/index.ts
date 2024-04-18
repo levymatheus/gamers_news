@@ -2,12 +2,14 @@ import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express"
 import AdminJSSequelize from "@adminjs/sequelize"
 import { sequelize } from "../database";
+import { adminJSResources } from "./resources";
 
 AdminJS.registerAdapter(AdminJSSequelize)
 
 export const adminJS = new AdminJS({
     databases: [sequelize], 
     rootPath: "/admin", // http://localhost:3000/admin
+    resources: adminJSResources,
     branding: {
         companyName: 'Gamer News Administrator',
        logo: '/logoApp.png',
