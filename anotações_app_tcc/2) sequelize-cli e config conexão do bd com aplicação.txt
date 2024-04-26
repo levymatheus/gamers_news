@@ -1,0 +1,53 @@
+1) criamos um arquivo sequelizeCli.js para configurar e sequelize e configurar a dependência para trabalhar com banco de dados
+
+2) no arquivo setamos um objeto com todas as configurações iniciais para fazer a conexão com o banco de dados, como nesse projeto 
+iremos usar o PostgreSQL especificamos em uma propriedade 'dialect'
+
+3) setamos o localhost que é o ambiente de testes que estamos, a porta do banco de dados e o nome do banco de dados,
+pois com o sequelize criamos o nosso banco de dados por linha de comando e nesse arquivo de configuração setamos seu nome na propriedade.
+
+4) também configuramos um username e senha para acesso a esse banco de dados. como esse arquivo vai ser upado para um servidor futuramente,
+depois iremos tratar essas propriedades para ficarem ocultas e não a amostra em nosso arquivo  de configuração
+
+5) na raiz do projeto criamos um outro arquivo para configurar o sequelize chamado .sequelizerc 
+esse arquivo fica responsável em pegar o sequelizeCli que configuramos anteriormente  e fazer a
+conexão com o projeto, conectando o terminal do sequelize com os models que criamos com o ts,
+no caso os models de usuários do nosso banco de dados, categorias, jogos, noticias, videos e etc.
+Basicamente esse arquivo faz a conexão do sequelize com os nossos arquivos typescript e js em que configuramos, 
+criamos e administramos nosso banco de dados.
+
+6) no terminal do vs code executamos o comando " psql -U postgres " para entrar no PostgreSQL e criamos a conexão do sequelize para um banco de dados
+postgres=# CREATE USER gamersNews CREATEDB ENCRYPTED PASSWORD 'gamersNews';
+feito isso o sequelize irá se conectar nesse banco de dados chamado "gamersNews" que criamos logo em seguida. 
+OBS: acima é feita apenas a conexão do sequelize para esse banco de dados, em seguida po banco de dados foi criado
+
+7) Após configurar todo o sequelize e configurar a conexão para um banco de dados que vai se chamar 'gamersNews'
+executamos no terminal o comando npx sequelize-cli db:create 
+Database gamersNews_development created. < === banco de dados criado e conectado com o serviço do sequelize
+
+8) é criada a pasta database, models, migrations e seeders, pastas essas que vamos criar e manipular nossas entidades, elementos como
+usuários, jogos, noticias, categorias, etc 
+
+7) anteriormente estávamos conectando a interface do sequelize com o banco de dados para manipularmos, feito isso conectamos o próprio banco de dados
+com a aplicação
+
+8) é criado um arquivo index.ts dentro de database para conectar o banco de dados com a nossa aplicação, lá temos as mesmas configurações
+que colocamos no arquivo sequelize-Cli, porém agora é feita a configuração do banco de dados para a aplicação. 
+Basicamente passamos o banco de dados que utilizamos, o host, porta, o nome do BD, usuário e senha para acesso.
+
+9) no servidor da aplicação server.ts testamos a conexão do banco de dados com a aplicação para verificar se está tudo funcionando 
+
+ sequelize.authenticate().then(() => {
+        console.log('DB connection sucessfull')
+    }) 
+
+retorna:
+
+[INFO] 00:16:21 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 4.5.5)
+Server initilized in port 3000
+Executing (default): SELECT 1+1 AS result
+DB connection sucessfull
+
+
+
+
