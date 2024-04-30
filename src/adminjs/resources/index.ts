@@ -2,7 +2,8 @@ import { ResourceWithOptions } from "adminjs";
 import { Category, Game, News } from "../../models";
 import { categoryResourceOptions } from "./category";
 import { gameResourceOptions } from "./game";
-import { newsResourceOptions } from "./new";
+import {newsResourceOptions } from "./new";
+import { newsResourceFeaturesVideo, newsResourceFeaturesImage } from "./new";
 
 export const adminJSResources: ResourceWithOptions[] = [
     {
@@ -17,6 +18,7 @@ export const adminJSResources: ResourceWithOptions[] = [
     
     {
         resource: News,
-        options: newsResourceOptions
+        options: newsResourceOptions, 
+        features: [...newsResourceFeaturesVideo, ...newsResourceFeaturesImage]
     }
 ]
