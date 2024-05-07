@@ -1,9 +1,10 @@
 import { ResourceWithOptions } from "adminjs";
-import { Category, Game, News } from "../../models";
+import { Category, Game, News, User } from "../../models";
 import { categoryResourceOptions } from "./category";
-import { gameResourceOptions } from "./game";
+import { gameResourceFeatures, gameResourceOptions } from "./game";
 import {newsResourceOptions } from "./new";
 import { newsResourceFeaturesVideo, newsResourceFeaturesImage } from "./new";
+import { userResourceOptions } from "./user";
 
 export const adminJSResources: ResourceWithOptions[] = [
     {
@@ -13,12 +14,18 @@ export const adminJSResources: ResourceWithOptions[] = [
 
     {
         resource: Game, // O model de game
-        options: gameResourceOptions // as configurações de gerenciamento de um jogo.
+        options: gameResourceOptions, // as configurações de gerenciamento de um jogo.
+        features: gameResourceFeatures
     },
     
     {
         resource: News,
         options: newsResourceOptions, 
         features: [...newsResourceFeaturesVideo, ...newsResourceFeaturesImage]
+    },
+
+    {
+        resource: User,
+        options: userResourceOptions
     }
 ]

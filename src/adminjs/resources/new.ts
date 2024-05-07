@@ -13,7 +13,6 @@ export const newsResourceOptions: ResourceOptions = {
   
 }
 
-
 // Podemos adicionar ferramentas de upload no nosso adminJS
 // No caso definimos uma pasta que não seja publica, assim depedendo da regra um usuário pode acessar ou não o contúdo.
 export const newsResourceFeaturesVideo: FeatureType[] = [
