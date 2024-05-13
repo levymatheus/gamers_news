@@ -3,8 +3,9 @@ import AdminJSExpress from "@adminjs/express"
 import AdminJSSequelize from "@adminjs/sequelize"
 import { sequelize } from "../database";
 import { adminJSResources } from "./resources";
-import { User } from "../models";
+import { Category, Game, News, User } from "../models";
 import bcrypt from "bcrypt"
+import { locale } from "./locale";
 
 AdminJS.registerAdapter(AdminJSSequelize)
 
@@ -39,6 +40,23 @@ export const adminJS = new AdminJS({
                 
     
             }
+        }
+    },
+    locale: locale,
+    dashboard: {
+        component: AdminJS.bundle('./components/Dashboard'),
+        handler: async (req, res, context) => {
+            const games = await Game.count()
+            const news = await News.count()
+            const categories = await Category.count()
+            const users = await User.count({ where: {role: 'user'}})
+
+            res.json({
+                'Categorias': categories,
+                'Jogos Cadastrados': games,
+                'Notícias até o momento': news,
+                'Usuários cadastrados': users
+            })
         }
     }
 
