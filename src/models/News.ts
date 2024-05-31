@@ -1,5 +1,6 @@
 import {  DataTypes, Model, Optional } from "sequelize"
 import { sequelize } from "../database"
+import { WatchTimeInstance } from "./WatchTime"
 
 export interface News {
     id: number
@@ -14,7 +15,9 @@ export interface News {
 
 export interface NewsCreationAttributes extends Optional<News, 'id' | 'videoUrl' | 'imageUrl' | 'secondsLong' > {}
 
-export interface NewsInstance extends Model<News, NewsCreationAttributes>, News {}
+export interface NewsInstance extends Model<News, NewsCreationAttributes>, News {
+    watchTime?: WatchTimeInstance
+}
 
 export const News = sequelize.define<NewsInstance, News>('News', {
     id: {
