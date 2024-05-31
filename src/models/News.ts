@@ -10,7 +10,6 @@ export interface News {
     imageUrl: string
     secondsLong: number
     gameId: number
-
 }
 
 export interface NewsCreationAttributes extends Optional<News, 'id' | 'videoUrl' | 'imageUrl' | 'secondsLong' > {}

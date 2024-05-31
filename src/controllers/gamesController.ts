@@ -27,8 +27,21 @@ export const gamesController = {
             }
         }
     },
-    // GET /games/search?name=
 
+    // GET /games/popular
+    popular: async (req: Request, res: Response) => {
+        try {
+            const topFive = await gameService.getTopFiveByLikes()
+            return res.json(topFive)
+        } catch (err) {
+            if (err instanceof Error) {
+                return res.status(400).json({ message: err.message })
+            }
+        }
+    },
+
+
+    // GET /games/search?name=
     search: async (req: Request, res: Response) => {
         const { name } = req.query
         const [page, perPage] = getPaginationParams(req.query)

@@ -32,5 +32,21 @@ export const favoritesController = {
                 return res.status(400).json({ message: err.message })
             }
         }
+    }, 
+
+    //DELETE /favorites/:id
+
+    delete: async (req: AuthenticationRequest, res: Response) => {
+        const userId = req.user!.id
+        const gameId  = req.params.id
+
+        try {
+            await favoriteService.delete(userId, Number(gameId))
+            return res.status(204).send()
+        } catch (err) {
+            if (err instanceof Error) {
+                return res.status(400).json({ message: err.message })
+            }
+        }
     }
 }

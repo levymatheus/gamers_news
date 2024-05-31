@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import path from "path"
 import fs from "fs"
 import { newService } from "../services/newService"
+import { AuthenticationRequest } from "../middlewares/auth"
 
 
 export const newsController = {
@@ -20,5 +21,40 @@ export const newsController = {
             }
         }
 
-    }
+    },
+
+    getWatchTime: async (req: AuthenticationRequest, res: Response) => {
+        const userId = req.user!.id
+        const newsId = req.params.id
+        try {
+            const watchTime = await newService.getWatchTime(userId, Number(newsId))
+            return res.json(watchTime)
+            
+        } catch (err) {
+            if (err instanceof Error) {
+                return res.status(400).json({ message: err.message })
+            }
+        }
+    },
+
+    setWatchTime: async (req: AuthenticationRequest, res: Response) => {
+        const userId = req.user!.id
+        const newsId = Number(req.params.id)
+        const {seconds} = req.body
+
+        try {
+            const watchTime = await newService.setWatchTime({
+                newsId,
+                userId,
+                seconds
+
+            })
+            return res.json(watchTime)
+            
+        } catch (err) {
+            if (err instanceof Error) {
+                return res.status(400).json({ message: err.message })
+            }
+        }
+    },
 }

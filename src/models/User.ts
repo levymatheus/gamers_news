@@ -4,8 +4,6 @@ import bcrypt from 'bcrypt'
 
 type CheckPasswordCallback = (err?: Error | undefined, isSame?: boolean) => void
 
-
-
 export interface User {
     id: number
     firstName: string
@@ -17,8 +15,6 @@ export interface User {
     role: 'admin' | 'user' // O usuário só pode ser admin ou user
 }
 
-
-
 export interface UserCreationAttributes extends Optional<User, 'id'> { }
 
 
@@ -26,7 +22,6 @@ export interface UserInstance extends Model<User, UserCreationAttributes>, User 
     checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void
 
 }
-
 
 export const User = sequelize.define<UserInstance, User>('User', {
     id: {

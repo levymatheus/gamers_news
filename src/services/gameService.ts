@@ -52,6 +52,34 @@ export const gameService = {
         return games
     },
 
+    getTopFiveByLikes: async () => {
+        const result = await Game.sequelize?.query(
+            `SELECT
+                games.id,
+                games.name,
+                games.synopsis,
+                games.thumbnail_url AS thumbnailUrl,
+                COUNT(users.id) AS likes
+            FROM games
+                LEFT OUTER JOIN likes
+                    ON games.id = likes.games_id
+                    INNER JOIN users
+                        ON users.id - likes.user_id
+            GROUP BY games_id
+            ORDER BY likes DESC    
+            LIMIT 5;  
+            `
+        )
+
+        if (result) {
+            const [topFive] = result
+            return topFive
+        } else {
+            return null
+        }
+
+    },
+
     findByName: async (name: string, page: number, perPage: number) => {
         const offset = (page - 1) * perPage
         const {count, rows } = await Game.findAndCountAll({
