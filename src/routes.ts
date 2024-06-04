@@ -6,7 +6,6 @@ import { authController } from './controllers/authController'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 import { favoritesController } from './controllers/favoritesController'
 import { likesController } from './controllers/likesController'
-import { userService } from './services/userService'
 import { usersController } from './controllers/usersController'
 
 
@@ -39,3 +38,4 @@ router.delete('/likes/:id', ensureAuth, likesController.delete)
 router.get('/users/current', ensureAuth, usersController.show)
 router.get('/users/current/watching', ensureAuth, usersController.watching)
 router.put('/users/current', ensureAuth, usersController.update)
+router.put('/users/current/password', ensureAuth, usersController.updatePassword)

@@ -1,10 +1,12 @@
 import express from "express"
+import cors from "cors"
 import { sequelize } from "./database"
 import { adminJS, adminJsRouter } from "./adminjs"
 import { router } from "./routes"
 
 const app = express()
 
+app.use(cors()) // habilitando o cors
 app.use(express.static('public')) // mostrando para o servidor a pasta dos assets publicos
 
 app.use(express.json())

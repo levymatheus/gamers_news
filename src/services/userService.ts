@@ -44,13 +44,25 @@ export const userService = {
     update: async (id: number, attributes: {
         firstName: string,
         lastName: string,
-        phone: string, 
+        phone: string,
         birth: Date,
         email: string
     }) => {
-        const [affectedRows, updatedUsers] = await User.update(attributes, {where: { id }, returning: true})
+        const [affectedRows, updatedUsers] = await User.update(attributes, { where: { id }, returning: true })
         updatedUsers[0]
     },
+
+    updatePassword: async (id: number, password: string) => {
+        const [affectedRows, updatedUsers] = await User.update({ password }, {
+            where: { id },
+            returning: true,
+            individualHooks: true
+
+        })
+        
+        return updatedUsers[0]
+    },
+
 
     getKeepWatchingList: async (id: number) => {
         const userWithWatchingNews = await User.findByPk(id, {
@@ -89,7 +101,7 @@ export const userService = {
 
         const keepWatchingList = filterLastNewsByGames(userWithWatchingNews.News!)
         // @ts-ignore
-        keepWatchingList.sort((a, b) => a.watchTime.updatedAt < b.watchTime.updateAt ? 1 :-1)
+        keepWatchingList.sort((a, b) => a.watchTime.updatedAt < b.watchTime.updateAt ? 1 : -1)
         return keepWatchingList
     }
 }
