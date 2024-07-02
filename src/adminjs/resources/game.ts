@@ -16,7 +16,8 @@ export const gameResourceFeatures: FeatureType[] = [
   uploadFileFeature({
     provider: {
       local: {
-        bucket: path.join(__dirname, '..', '..', '..', 'public') //a capa do jogo fica na pasta publica para que todos possam ver.
+        bucket: path.join(__dirname, '..', '..', '..', 'public'), //a capa do jogo fica na pasta publica para que todos possam ver.
+        opts: {}
       }
     },
     properties: {

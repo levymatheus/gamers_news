@@ -1,12 +1,7 @@
 import { Sequelize } from 'sequelize'
+import { DATABASE_URL } from '../config/environment'
 
-export const sequelize = new Sequelize({
-    dialect: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    database: 'gamersNews_development',
-    username:'gamersnews',
-    password: 'gamersnews',
+export const sequelize = new Sequelize(DATABASE_URL,{
     define: {
         underscored: true // converte valores de propriedades do banco de dados em snake_case para camelCase que é o padrão do js
     }

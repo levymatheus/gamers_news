@@ -3,7 +3,6 @@ import { BrandingOptions } from "adminjs";
 export const brandingOptions: BrandingOptions = {
     companyName: 'Gamer News Administrator',
     logo: '/logoApp.png',
-    softwareBrothers: false,
     theme: {
         colors: {
             primary100: '#02012d',

@@ -23,7 +23,7 @@ export const likesController = {
         const gameId = req.params.id
 
         try {
-            await likeService.unLike(userId, Number(gameId))
+            await likeService.unLike(userId, Number(gameId))  
             return res.status(204).send()
         } catch (err) {
             if (err instanceof Error) {
